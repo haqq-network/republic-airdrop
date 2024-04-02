@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { HeroHeading } from '@haqq-nft/ui-kit';
+import { ConnectWalletButtons } from './connect-wallet-buttons/connect-wallet-buttons';
 import { Instructions } from './instructions/instructions';
 import fullEclipse from '../../assets/images/half-eclipse.png';
 import sunrise from '../../assets/images/sunrise.png';
@@ -34,7 +35,11 @@ export function TopBlock() {
         </HeroHeading>
       </div>
 
-      <Instructions />
+      <div className="flex flex-col items-center gap-[70px] px-[80px] py-[60px]">
+        <Instructions />
+
+        <ConnectWalletButtons />
+      </div>
 
       <SunriseBackground />
     </div>
