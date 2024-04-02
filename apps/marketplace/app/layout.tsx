@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { Metadata } from 'next';
 import './global.scss';
 import { AuthProvider, ConfigProvider } from '@haqq-nft/data-api';
-import { FooterInfo, SharedHeader } from '@haqq-nft/shared-components';
+import { SharedHeader } from '@haqq-nft/shared-components';
 import { Page } from '@haqq-nft/ui-kit';
 import {
   SelectWalletModalWrapper,
@@ -47,7 +47,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                         <Web3ConnectionBtns />
                       </SharedHeader>
                     }
-                    footer={<FooterInfo />}
                   >
                     {children}
                   </Page>
