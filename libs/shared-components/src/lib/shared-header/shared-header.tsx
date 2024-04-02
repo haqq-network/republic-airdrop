@@ -7,8 +7,18 @@ import Link from 'next/link';
 import ScrollLock from 'react-scrolllock';
 import { HaqqBurgerButton } from '@haqq-nft/ui-kit';
 import logoImageData from '../../assets/haqq-logo-sign.svg';
-import { AddTokenBtn } from '../add-token-btn/add-token-btn';
 import { BurgerMenu } from '../burger-menu/burger-menu';
+
+export function HeaderLinks() {
+  return (
+    <>
+      <Link href="/">AirDrop</Link>
+      <Link href="/">Staking</Link>
+      <Link href="/">Governance</Link>
+      <Link href="/">SBT</Link>
+    </>
+  );
+}
 
 export function SharedHeader({ children }: PropsWithChildren) {
   const [isBurgerMenuOpen, setBurgerMenuOpen] = useState(false);
@@ -45,15 +55,12 @@ export function SharedHeader({ children }: PropsWithChildren) {
             >
               HAQQ
             </Link>
-            <div className="text-haqq-black w-fit rounded-[30px] bg-white px-[8px] py-[3px] text-center text-[12px] font-[700] uppercase leading-[15px]">
-              Token
-            </div>
           </div>
 
           <div className="flex-1" />
 
-          <div className="mr-[24px] hidden lg:block">
-            <AddTokenBtn />
+          <div className="hidden gap-[40px] pr-[80px] lg:flex">
+            <HeaderLinks />
           </div>
 
           <div className="hidden lg:block">{children}</div>

@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 import { Web3ConnectionBtns } from '@haqq-nft/web3-connections';
-import { AddTokenBtn } from '../add-token-btn/add-token-btn';
+import { HeaderLinks } from '../shared-header/shared-header';
 
 export function BurgerMenu({
   className,
@@ -21,7 +21,7 @@ export function BurgerMenu({
     >
       <div className="mb-[60px] flex flex-col items-start space-y-[16px] sm:mb-[80px]">
         <Web3ConnectionBtns />
-        <AddTokenBtn />
+        <HeaderLinks />
       </div>
     </div>
   );
