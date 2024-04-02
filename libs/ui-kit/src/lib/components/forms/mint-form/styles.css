@@ -1,0 +1,13 @@
+.content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+}
+
+.content.show {
+  max-height: 2000px;
+  opacity: 1;
+}

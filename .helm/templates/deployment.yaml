@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.global.kube.service_name }}
+  namespace: {{ .Values.global.kube.namespace }}
+  labels:
+    app: {{ .Values.global.kube.service_name }}
+spec:
+  replicas: {{ .Values.global.kube.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.global.kube.service_name }}
+  revisionHistoryLimit: 2
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.global.kube.service_name }}
+    spec:
+      containers:
+        - name: {{ .Values.global.kube.service_name }}
+          image: {{ .Values.werf.image.nft_marketplace }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NX_WALLET_CONNECT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: secrets
+                  key: NX_WALLET_CONNECT_ID

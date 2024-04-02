@@ -1,0 +1,22 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.global.kube.service_name }}
+  namespace: {{ .Values.global.kube.namespace }}
+  labels:
+    app: {{ .Values.global.kube.service_name }}
+  annotations:
+    kubernetes.io/ingress.class: 'nginx'
+spec:
+  rules:
+    - host: nft.haqq.sh
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: {{ .Values.global.kube.service_name }}
+                port:
+                  number: 80

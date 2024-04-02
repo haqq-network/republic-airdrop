@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.global.kube.service_name }}
+  namespace: {{ .Values.global.kube.namespace }}
+  labels:
+    app: {{ .Values.global.kube.service_name }}
+spec:
+  ports:
+    - port: 80
+      targetPort: 3000
+      name: http
+  selector:
+    app: {{ .Values.global.kube.service_name }}

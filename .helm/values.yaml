@@ -1,0 +1,5 @@
+global:
+  kube:
+    service_name: nft-marketplace
+    namespace: nft-marketplace
+    replicas: 1

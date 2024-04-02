@@ -1,0 +1,31 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["esnext", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@haqq-nft/data-api": ["libs/data-api/src/index.ts"],
+      "@haqq-nft/hooks": ["libs/hooks/src/index.ts"],
+      "@haqq-nft/main-page": ["libs/main-page/src/index.ts"],
+      "@haqq-nft/main-page/server": ["libs/main-page/src/server.ts"],
+      "@haqq-nft/shared-components": ["libs/shared-components/src/index.ts"],
+      "@haqq-nft/storybook": ["libs/storybook/src/index.ts"],
+      "@haqq-nft/types": ["libs/types/src/index.ts"],
+      "@haqq-nft/ui-kit": ["libs/ui-kit/src/index.ts"],
+      "@haqq-nft/utils": ["libs/utils/src/index.ts"],
+      "@haqq-nft/web3-connections": ["libs/web3-connections/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
