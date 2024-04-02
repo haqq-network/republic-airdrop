@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { HeroHeading } from '@haqq-nft/ui-kit';
+import { Instructions } from './instructions/instructions';
 import fullEclipse from '../../assets/images/half-eclipse.png';
 import sunrise from '../../assets/images/sunrise.png';
 
@@ -32,6 +33,8 @@ export function TopBlock() {
           Air drop Republic
         </HeroHeading>
       </div>
+
+      <Instructions />
 
       <SunriseBackground />
     </div>
