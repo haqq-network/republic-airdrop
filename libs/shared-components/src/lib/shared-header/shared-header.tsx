@@ -1,7 +1,14 @@
 'use client';
 
-import { Fragment, PropsWithChildren, useCallback, useState } from 'react';
+import {
+  Fragment,
+  PropsWithChildren,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 import clsx from 'clsx';
+import { debounce } from 'lodash';
 import Image from 'next/image';
 import Link from 'next/link';
 import ScrollLock from 'react-scrolllock';
@@ -22,6 +29,9 @@ export function HeaderLinks() {
 
 export function SharedHeader({ children }: PropsWithChildren) {
   const [isBurgerMenuOpen, setBurgerMenuOpen] = useState(false);
+  const [headerBackground, setHeaderBackground] = useState<
+    'bg-transparent' | 'bg-haqq-black'
+  >('bg-transparent');
 
   const handleMenuOpen = useCallback(() => {
     setBurgerMenuOpen(!isBurgerMenuOpen);
@@ -31,12 +41,27 @@ export function SharedHeader({ children }: PropsWithChildren) {
     setBurgerMenuOpen(false);
   }, []);
 
+  const changeHeaderBackground = debounce(() => {
+    setHeaderBackground(
+      document.body.scrollTop > 10 ? 'bg-haqq-black' : 'bg-transparent',
+    );
+  }, 10);
+
+  useEffect(() => {
+    document.body.addEventListener('scroll', changeHeaderBackground);
+    return () => {
+      document.body.removeEventListener('scroll', changeHeaderBackground);
+    };
+  }, [changeHeaderBackground]);
+
   return (
     <Fragment>
       <header
         className={clsx(
-          'bg-haqq-black h-[63px] w-full border-b border-t border-[#464647] sm:h-[72px]',
+          'h-[63px] w-full border-b border-t border-[#464647] sm:h-[72px]',
           'sticky top-0 z-50',
+          'transition-color linear duration-150 will-change-[background]',
+          headerBackground,
         )}
       >
         <div className="relative z-50 mx-auto flex h-full w-full flex-row items-center pr-[16px] sm:pr-[64px] lg:pr-[80px]">

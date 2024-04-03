@@ -47,6 +47,7 @@ module.exports = {
       screens: {
         md: '744px',
         '2xl': '1440px',
+        '3xl': '1920px',
       },
       backgroundImage: {
         'rapid-gradient':
