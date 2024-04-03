@@ -2,15 +2,15 @@ import { useCallback, useState } from 'react';
 import { Keplr } from '@keplr-wallet/types';
 import clsx from 'clsx';
 import { useAddress } from '@haqq-nft/hooks';
-import { HaqqButton } from '@haqq-nft/ui-kit';
+import { CaptchaModal, HaqqButton } from '@haqq-nft/ui-kit';
 import { haqqToEth } from '@haqq-nft/utils';
 import {
   getKeplrWallet,
   useEvmConnectors,
   useWallet,
 } from '@haqq-nft/web3-connections';
-import { Instructions } from '../instructions/instructions';
 import { AddressToReceiveBonuses } from '../address-to-receive-bonuses/address-to-receive-bonuses';
+import { Instructions } from '../instructions/instructions';
 
 async function enableChains(keplrWallet: Keplr) {
   await keplrWallet.enable(['haqq_11235-1', 'cosmoshub-4', 'evmos_9001-2']);

@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { HeroHeading } from '@haqq-nft/ui-kit';
 import { ConnectWalletButtons } from './connect-wallet-buttons/connect-wallet-buttons';
-import { Instructions } from './instructions/instructions';
 import sunriseImageData from '../../assets/images/index-page-sunrise-bg.png';
 
 function SunriseBackground() {

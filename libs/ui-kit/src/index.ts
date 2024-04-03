@@ -55,4 +55,4 @@ export * from './lib/components/nft-label/nft-label';
 export * from './lib/components/infinite-scroll/infinite-scroll';
 export * from './lib/components/hero-heading/hero-heading';
 
-export * from './lib/components/forms/mint-form/mint-form';
+export * from './lib/components/captcha-modal/captcha-modal';
