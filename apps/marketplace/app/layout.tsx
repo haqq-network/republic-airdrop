@@ -14,21 +14,21 @@ import {
 const DOMAIN = 'https://ecosystem-nft-frontend.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'Ecosystem Token',
-  description: 'Buy your first Ecosystem Token with ISLM',
+  title: 'Ecosystem Airdrop',
+  description: 'Buy your first Ecosystem Airdrop with ISLM',
   openGraph: {
-    title: 'Ecosystem Token',
-    description: 'Buy your first Ecosystem Token with ISLM',
+    title: 'Ecosystem Airdrop',
+    description: 'Buy your first Ecosystem Airdrop with ISLM',
     type: 'website',
     url: DOMAIN,
     images: `${DOMAIN}/shared-bg.png`,
-    siteName: 'Ecosystem Token',
+    siteName: 'Ecosystem Airdrop',
   },
   twitter: {
     site: DOMAIN,
     images: `${DOMAIN}/shared-bg.png`,
-    title: 'Ecosystem Token',
-    description: 'Buy your first Ecosystem Token with ISLM',
+    title: 'Ecosystem Airdrop',
+    description: 'Buy your first Ecosystem Airdrop with ISLM',
   },
 };
 
@@ -41,15 +41,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <AuthProvider>
               <WalletProvider>
                 <SelectWalletModalWrapper>
-                  <Page
-                    header={
-                      <SharedHeader>
-                        <Web3ConnectionBtns />
-                      </SharedHeader>
-                    }
-                  >
-                    {children}
-                  </Page>
+                  <Page header={<SharedHeader></SharedHeader>}>{children}</Page>
                 </SelectWalletModalWrapper>
               </WalletProvider>
             </AuthProvider>

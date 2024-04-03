@@ -12,3 +12,4 @@ export * from './lib/ipfs/get-ipfs-image';
 export * from './lib/get-formatted-address';
 export * from './lib/sleep';
 export * from './lib/retryPromiseUntil';
+export * from './lib/convert-address';

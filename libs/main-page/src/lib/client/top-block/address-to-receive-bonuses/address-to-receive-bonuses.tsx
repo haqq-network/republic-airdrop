@@ -1,20 +1,49 @@
 'use client';
 
-import { ChangeEvent, useState } from 'react';
+import { yupResolver } from '@hookform/resolvers/yup';
 import clsx from 'clsx';
-import { HaqqButton, Input } from '@haqq-nft/ui-kit';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { FormError, HaqqButton, HookedFormInput } from '@haqq-nft/ui-kit';
 
-export function AddressToReceiveBonuses({ className }: { className?: string }) {
-  const [address, setAddress] = useState('');
+const schema = yup
+  .object({
+    address: yup
+      .string()
+      .defined('Address is required')
+      .required("Address can't be empty"),
+  })
+  .required();
 
-  const onChangeAddress = (e: ChangeEvent<HTMLInputElement>) => {
-    setAddress(e.target.value);
+interface IFields {
+  address: string;
+}
+
+export function AddressToReceiveBonuses({
+  className,
+  address,
+}: {
+  className?: string;
+  address: string;
+}) {
+  const { register, handleSubmit, formState } = useForm<IFields>({
+    resolver: yupResolver(schema),
+    values: {
+      address: address,
+    },
+  });
+
+  const isDisabled = !address || address.length === 0;
+
+  const onCheck = (data: IFields) => {
+    console.log(data);
   };
 
-  const isDisabled = address.length === 0;
-
   return (
-    <div
+    <form
+      noValidate
+      autoComplete="off"
+      onSubmit={handleSubmit(onCheck)}
       className={clsx(
         'flex w-full flex-col items-center gap-[16px] sm:w-fit',
         className,
@@ -25,15 +54,20 @@ export function AddressToReceiveBonuses({ className }: { className?: string }) {
           Address for receiving bonuses
         </div>
         <div className="text-[12px]">
-          You can enter any address in EVM/HAQQ format
+          You can enter any address in EVM/HAQQ format with connected wallet
         </div>
       </div>
-      <Input
-        value={address}
-        onChange={onChangeAddress}
+
+      <HookedFormInput
+        name="address"
+        id="address"
+        error={formState.errors.address as FormError}
+        register={register}
         className="w-full lg:w-[412px]"
         placeholder="Enter address"
+        disabled
       />
+
       <HaqqButton
         className={clsx(
           'w-full sm:w-fit',
@@ -44,6 +78,6 @@ export function AddressToReceiveBonuses({ className }: { className?: string }) {
       >
         Save address
       </HaqqButton>
-    </div>
+    </form>
   );
 }

@@ -26,8 +26,6 @@ export function TopBlock() {
       </div>
 
       <div className="flex flex-col items-center gap-[70px] px-[40px] py-[40px] lg:px-[80px] lg:py-[60px]">
-        <Instructions />
-
         <ConnectWalletButtons />
       </div>
 

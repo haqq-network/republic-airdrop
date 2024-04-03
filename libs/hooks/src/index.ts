@@ -6,3 +6,4 @@ export * from './lib/use-clipboard';
 export * from './lib/use-debounce-value';
 export * from './lib/use-time-left';
 export * from './lib/use-mobile-query';
+export * from './lib/use-address';

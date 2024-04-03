@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import { Path, UseFormRegister } from 'react-hook-form';
 import { AdditionalInputProps, Input } from './input';
 
-interface FormError {
+export interface FormError {
   message: string | undefined;
 }
 

@@ -7,3 +7,5 @@ export * from './hooks/useTotalSupply';
 export * from './providers';
 export * from './hooks/useIslmEstimated';
 export * from './hooks/useTotalSupply';
+export * from './hooks/use-keplr';
+export * from './hooks/use-personal-sign';

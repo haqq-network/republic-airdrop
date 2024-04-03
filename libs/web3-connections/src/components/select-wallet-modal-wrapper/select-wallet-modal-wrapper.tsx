@@ -5,21 +5,13 @@ import { useConnect } from 'wagmi';
 import { SelectWalletModal } from '@haqq-nft/ui-kit';
 import { useWallet } from '../../providers';
 
-export function SelectWalletModalWrapper({
-  children,
-  showConnector = false,
-  handleChallengedLogin,
-}: PropsWithChildren & {
-  showConnector?: boolean;
-  handleChallengedLogin?: () => void;
-}) {
+export const useEvmConnectors = () => {
   const { connectAsync, connectors, error, isPending } = useConnect();
   const { closeSelectWallet, isSelectWalletOpen } = useWallet();
 
   const handleClose = useCallback(async () => {
-    handleChallengedLogin && (await handleChallengedLogin());
     closeSelectWallet();
-  }, [closeSelectWallet, handleChallengedLogin]);
+  }, [closeSelectWallet]);
 
   const handleWalletConnect = useCallback(
     async (connectorIdx: number) => {
@@ -39,7 +31,31 @@ export function SelectWalletModalWrapper({
     });
   }, [connectors, isPending]);
 
+  return {
+    handleWalletConnect,
+    selectWalletModalConnectors,
+    handleClose,
+    isSelectWalletOpen,
+    error,
+  };
+};
+
+export function SelectWalletModalWrapper({
+  children,
+  showConnector = false,
+}: PropsWithChildren & {
+  showConnector?: boolean;
+}) {
+  const {
+    handleWalletConnect,
+    selectWalletModalConnectors,
+    handleClose,
+    isSelectWalletOpen,
+    error,
+  } = useEvmConnectors();
+
   const showConnectors = isSelectWalletOpen || showConnector;
+
   return (
     <>
       {children}
