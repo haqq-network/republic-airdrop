@@ -19,13 +19,13 @@ function SunriseBackground() {
 export function TopBlock() {
   return (
     <div className="overflow-x-clip ">
-      <div className="border-haqq-border flex border-b px-[40px] py-[34px] lg:px-[80px] lg:py-[68px]">
+      <div className="border-haqq-border flex border-b px-[40px] py-[48px] lg:px-[80px] lg:py-[68px]">
         <HeroHeading className="sm:text-[70px] lg:text-[70px]">
           Air drop Republic
         </HeroHeading>
       </div>
 
-      <div className="flex flex-col items-center gap-[70px] px-[80px] py-[60px]">
+      <div className="flex flex-col items-center gap-[70px] px-[40px] py-[40px] lg:px-[80px] lg:py-[60px]">
         <Instructions />
 
         <ConnectWalletButtons />

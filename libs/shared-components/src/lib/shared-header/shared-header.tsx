@@ -45,7 +45,7 @@ export function SharedHeader({ children }: PropsWithChildren) {
     setHeaderBackground(
       document.body.scrollTop > 10 ? 'bg-haqq-black' : 'bg-transparent',
     );
-  }, 50);
+  }, 10);
 
   useEffect(() => {
     document.body.addEventListener('scroll', changeHeaderBackground);
@@ -60,7 +60,7 @@ export function SharedHeader({ children }: PropsWithChildren) {
         className={clsx(
           'h-[63px] w-full border-b border-t border-[#464647] sm:h-[72px]',
           'sticky top-0 z-50',
-          'transition-color linear duration-200 will-change-[background]',
+          'transition-color linear duration-150 will-change-[background]',
           headerBackground,
         )}
       >
