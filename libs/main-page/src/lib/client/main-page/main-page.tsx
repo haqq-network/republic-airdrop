@@ -4,10 +4,8 @@ import { TopBlock } from '../top-block/top-block';
 
 export function MainPage() {
   return (
-    <div>
-      <Container>
-        <TopBlock />
-      </Container>
-    </div>
+    <Container className="flex h-full flex-1 flex-col">
+      <TopBlock />
+    </Container>
   );
 }

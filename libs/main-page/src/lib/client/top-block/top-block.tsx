@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { HeroHeading } from '@haqq-nft/ui-kit';
 import { ConnectWalletButtons } from './connect-wallet-buttons/connect-wallet-buttons';
-import { Instructions } from './instructions/instructions';
 import sunriseImageData from '../../assets/images/index-page-sunrise-bg.png';
 
 function SunriseBackground() {
@@ -18,16 +17,14 @@ function SunriseBackground() {
 
 export function TopBlock() {
   return (
-    <div className="overflow-x-clip ">
+    <div className="flex flex-1 flex-col overflow-x-clip">
       <div className="border-haqq-border flex border-b px-[40px] py-[48px] lg:px-[80px] lg:py-[68px]">
         <HeroHeading className="sm:text-[70px] lg:text-[70px]">
           Air drop Republic
         </HeroHeading>
       </div>
 
-      <div className="flex flex-col items-center gap-[70px] px-[40px] py-[40px] lg:px-[80px] lg:py-[60px]">
-        <Instructions />
-
+      <div className="flex flex-1 flex-col items-center gap-[70px] px-[40px] py-[40px] lg:px-[80px] lg:py-[60px]">
         <ConnectWalletButtons />
       </div>
 
