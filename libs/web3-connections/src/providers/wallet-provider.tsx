@@ -10,7 +10,7 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { haqqMainnet, haqqTestedge2 } from 'viem/chains';
+import { haqqMainnet } from 'viem/chains';
 import { useAccount, useDisconnect, useSwitchChain } from 'wagmi';
 import { isAllowedChain, useSupportedChains } from './web3-provider';
 
@@ -35,7 +35,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
 
   const handleNetworkChange = useCallback(async () => {
     if (switchChainAsync) {
-      await switchChainAsync({ chainId: haqqTestedge2.id });
+      await switchChainAsync({ chainId: haqqMainnet.id });
     } else {
       console.warn('useWallet(): handleNetworkChange error');
     }

@@ -11,6 +11,7 @@ import {
 } from '@haqq-nft/web3-connections';
 import { AddressToReceiveBonuses } from '../address-to-receive-bonuses/address-to-receive-bonuses';
 import { Instructions } from '../instructions/instructions';
+import { PurchaseFailureBlock } from '../purchase-failure-block/purchase-failure-block';
 
 async function enableChains(keplrWallet: Keplr) {
   await keplrWallet.enable(['haqq_11235-1', 'cosmoshub-4', 'evmos_9001-2']);
@@ -64,13 +65,7 @@ async function addHaqqNetwork(keplrWallet: Keplr) {
 
 const TURNSTILE_SITEKEY = process.env['NEXT_PUBLIC_TURNSTILE_SITEKEY'];
 
-export function ConnectWalletButtons({
-  className,
-  children,
-}: {
-  className?: string;
-  children?: React.ReactNode;
-}) {
+export function ConnectWalletButtons({ className }: { className?: string }) {
   const { ethAddress } = useAddress();
   const hasMetamaskConnected = !!ethAddress;
   const [ethAddressFromKeplr, setEthAddressFromKepler] = useState('');
@@ -102,24 +97,51 @@ export function ConnectWalletButtons({
         await enableChains(keplrWallet);
       }
 
-      const [haqq, cosmos, evmos] = await Promise.all([
+      const [haqq] = await Promise.all([
         await keplrWallet.getKey('haqq_11235-1'),
-        await keplrWallet.getKey('cosmoshub-4'),
-        await keplrWallet.getKey('evmos_9001-2'),
       ]);
 
       setEthAddressFromKepler(haqqToEth(haqq.bech32Address));
 
       setKeplrAccounts({
         haqq: haqq.bech32Address,
-        cosmos: cosmos.bech32Address,
-        evmos: evmos.bech32Address,
       });
     }
   }, [disconnect, setEthAddressFromKepler, hasMetamaskConnected]);
 
   const { handleWalletConnect, selectWalletModalConnectors } =
     useEvmConnectors();
+
+  const [notAllowed, setNotAllowed] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  if (notAllowed) {
+    return (
+      <div
+        className={clsx(
+          'm-auto flex w-full flex-col items-center gap-[12px] sm:w-fit',
+          className,
+        )}
+      >
+        <PurchaseFailureBlock />
+      </div>
+    );
+  }
+
+  if (success) {
+    return (
+      <div
+        className={clsx(
+          'text-default-green m-auto flex w-full flex-col items-center gap-[12px] sm:w-fit',
+          className,
+        )}
+      >
+        <div className={clsx('max-w-[600px] text-[18px]', className)}>
+          Congrats! You have successfully participated in the airdrop.
+        </div>
+      </div>
+    );
+  }
 
   if (targetHexAddress) {
     return (
@@ -131,7 +153,11 @@ export function ConnectWalletButtons({
             className,
           )}
         >
-          <AddressToReceiveBonuses address={targetHexAddress} />
+          <AddressToReceiveBonuses
+            address={targetHexAddress}
+            setNotAllowed={setNotAllowed}
+            setSuccess={setSuccess}
+          />
         </div>
       </>
     );
@@ -153,7 +179,7 @@ export function ConnectWalletButtons({
           return (
             <HaqqButton
               variant={2}
-              className="w-full uppercase sm:w-fit"
+              className="w-full min-w-[200px] uppercase sm:w-fit"
               key={connector.id}
               onClick={() => {
                 handleWalletConnect(connector.id);
@@ -166,7 +192,7 @@ export function ConnectWalletButtons({
 
         <HaqqButton
           variant={2}
-          className="w-full uppercase sm:w-fit"
+          className="w-full min-w-[200px] uppercase sm:w-fit"
           onClick={connectKeplrWallet}
         >
           Keplr Wallet

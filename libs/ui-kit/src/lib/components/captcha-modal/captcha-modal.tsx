@@ -14,8 +14,6 @@ export const CaptchaModal = ({
   const [token, setToken] = useState<string | undefined>(undefined);
   const [isCaptchaModalOpen, setCaptchaModalOpen] = useState(false);
 
-  console.log('turnstileSiteKey', turnstileSiteKey);
-
   useEffect(() => {
     const tId = setTimeout(() => {
       if (!token && !isClosable) {
