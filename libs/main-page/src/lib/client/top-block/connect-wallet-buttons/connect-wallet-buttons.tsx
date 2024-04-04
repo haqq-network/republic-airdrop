@@ -16,7 +16,7 @@ async function enableChains(keplrWallet: Keplr) {
   await keplrWallet.enable(['haqq_11235-1', 'cosmoshub-4', 'evmos_9001-2']);
 }
 
-export async function addHaqqNetwork(keplrWallet: Keplr) {
+async function addHaqqNetwork(keplrWallet: Keplr) {
   const basePrefix = 'haqq';
   try {
     await keplrWallet.experimentalSuggestChain({
@@ -61,6 +61,8 @@ export async function addHaqqNetwork(keplrWallet: Keplr) {
     console.error(error);
   }
 }
+
+const TURNSTILE_SITEKEY = process.env['NEXT_PUBLIC_TURNSTILE_SITEKEY'];
 
 export function ConnectWalletButtons({
   className,
@@ -121,14 +123,17 @@ export function ConnectWalletButtons({
 
   if (targetHexAddress) {
     return (
-      <div
-        className={clsx(
-          'flex w-full flex-col items-center gap-[12px] sm:w-fit',
-          className,
-        )}
-      >
-        <AddressToReceiveBonuses address={targetHexAddress} />
-      </div>
+      <>
+        <Instructions />
+        <div
+          className={clsx(
+            'flex w-full flex-col items-center gap-[12px] sm:w-fit',
+            className,
+          )}
+        >
+          <AddressToReceiveBonuses address={targetHexAddress} />
+        </div>
+      </>
     );
   }
 
@@ -169,7 +174,7 @@ export function ConnectWalletButtons({
       </div>
 
       <CaptchaModal
-        turnstileSiteKey={turnstileSiteKey}
+        turnstileSiteKey={TURNSTILE_SITEKEY}
         isClosable={!!targetHexAddress}
       />
     </>

@@ -41,7 +41,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <AuthProvider>
               <WalletProvider>
                 <SelectWalletModalWrapper>
-                  <Page header={<SharedHeader></SharedHeader>}>{children}</Page>
+                  <Page
+                    header={
+                      <SharedHeader>
+                        <Web3ConnectionBtns />
+                      </SharedHeader>
+                    }
+                  >
+                    {children}
+                  </Page>
                 </SelectWalletModalWrapper>
               </WalletProvider>
             </AuthProvider>
@@ -52,7 +60,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   );
 }
 
-const WALLET_CONNECT_PROJECT_ID = '9fb33c647eb8257e76a5a5025a35b14d';
+const WALLET_CONNECT_PROJECT_ID = process.env['NEXT_PUBLIC_WALLET_CONNECT_ID'];
 
 const Web3ProviderWrapper = ({ children }: { children: ReactNode }) => {
   return (

@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useEffect, useState } from 'react';
 import Turnstile from 'react-turnstile';
 import { MobileHeading, Modal, ModalCloseButton } from '../modal/modal';
@@ -11,6 +13,8 @@ export const CaptchaModal = ({
 }) => {
   const [token, setToken] = useState<string | undefined>(undefined);
   const [isCaptchaModalOpen, setCaptchaModalOpen] = useState(false);
+
+  console.log('turnstileSiteKey', turnstileSiteKey);
 
   useEffect(() => {
     const tId = setTimeout(() => {
