@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger */
 'use client';
 
 import { useCallback, useState } from 'react';
@@ -64,13 +63,11 @@ export function AddressToReceiveBonuses({
       try {
         const result = await checkAirdropAvailability(data.address);
 
-        debugger;
         if (result.id) {
           try {
             if (address.startsWith('0x')) {
               const signature = await signEvm(address as Hex, data.address);
 
-              debugger;
               const result = await participateEvm(
                 ethToHaqq(address),
                 data.address,
@@ -85,7 +82,6 @@ export function AddressToReceiveBonuses({
             } else if (address.startsWith('haqq')) {
               const signature = await signKeplr(address, data.address);
 
-              debugger;
               const result = await participateCosmos(
                 data.address,
                 signature.signature,
