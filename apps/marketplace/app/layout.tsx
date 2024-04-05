@@ -11,7 +11,7 @@ import {
   Web3Provider,
 } from '@haqq-nft/web3-connections';
 
-const DOMAIN = 'https://ecosystem-nft-frontend.vercel.app';
+const DOMAIN = 'https://republic-airdrop.vercel.app/';
 
 export const metadata: Metadata = {
   title: 'Ecosystem Airdrop',
