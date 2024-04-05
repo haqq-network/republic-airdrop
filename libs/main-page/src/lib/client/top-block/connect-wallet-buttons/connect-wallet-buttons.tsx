@@ -3,7 +3,6 @@ import { Keplr } from '@keplr-wallet/types';
 import clsx from 'clsx';
 import { useAddress } from '@haqq-nft/hooks';
 import { CaptchaModal, HaqqButton } from '@haqq-nft/ui-kit';
-import { haqqToEth } from '@haqq-nft/utils';
 import {
   getKeplrWallet,
   useEvmConnectors,
