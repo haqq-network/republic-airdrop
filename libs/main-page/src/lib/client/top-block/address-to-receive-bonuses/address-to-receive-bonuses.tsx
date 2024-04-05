@@ -80,7 +80,7 @@ export function AddressToReceiveBonuses({
                 setSuccess(true);
               }
             } else if (address.startsWith('haqq')) {
-              const signature = await signKeplr(address, data.address);
+              const signature = await signKeplr('haqq_11235-1', data.address);
 
               const result = await participateCosmos(
                 data.address,
