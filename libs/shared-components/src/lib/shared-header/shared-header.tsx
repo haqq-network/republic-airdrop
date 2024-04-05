@@ -84,10 +84,6 @@ export function SharedHeader({ children }: PropsWithChildren) {
 
           <div className="flex-1" />
 
-          <div className="hidden gap-[40px] pr-[80px] lg:flex">
-            <HeaderLinks />
-          </div>
-
           <div className="hidden lg:block">{children}</div>
 
           <div className="block pl-[8px] leading-[0] lg:hidden">

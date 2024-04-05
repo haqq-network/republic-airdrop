@@ -73,6 +73,12 @@ export function AddressToReceiveBonuses({
                 data.address,
                 signature,
               );
+
+              if (!result.id) {
+                setNotAllowed(true);
+              } else {
+                setSuccess(true);
+              }
             } else if (address.startsWith('haqq')) {
               const signature = await signKeplr(address, data.address);
 
@@ -81,6 +87,12 @@ export function AddressToReceiveBonuses({
                 signature.signature,
                 address,
               );
+
+              if (!result.id) {
+                setNotAllowed(true);
+              } else {
+                setSuccess(true);
+              }
             }
           } catch (e) {
             console.error(e);
@@ -89,12 +101,15 @@ export function AddressToReceiveBonuses({
         } else {
           setNotAllowed(true);
         }
-      } finally {
+      } catch (e) {
+        console.error(e);
         setNotAllowed(true);
+      } finally {
         setPending(false);
       }
     },
     [
+      setSuccess,
       setNotAllowed,
       address,
       checkAirdropAvailability,

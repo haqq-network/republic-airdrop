@@ -15,20 +15,20 @@ const DOMAIN = 'https://ecosystem-nft-frontend.vercel.app';
 
 export const metadata: Metadata = {
   title: 'Ecosystem Airdrop',
-  description: 'Buy your first Ecosystem Airdrop with ISLM',
+  description: 'Approve your new airdrop address',
   openGraph: {
     title: 'Ecosystem Airdrop',
-    description: 'Buy your first Ecosystem Airdrop with ISLM',
+    description: 'Approve your new airdrop address',
     type: 'website',
     url: DOMAIN,
-    images: `${DOMAIN}/shared-bg.png`,
+    images: `${DOMAIN}/shared-bg.jpg`,
     siteName: 'Ecosystem Airdrop',
   },
   twitter: {
     site: DOMAIN,
-    images: `${DOMAIN}/shared-bg.png`,
+    images: `${DOMAIN}/shared-bg.jpg`,
     title: 'Ecosystem Airdrop',
-    description: 'Buy your first Ecosystem Airdrop with ISLM',
+    description: 'Approve your new airdrop address',
   },
 };
 

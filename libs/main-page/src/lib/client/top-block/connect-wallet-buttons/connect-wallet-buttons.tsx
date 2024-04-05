@@ -68,18 +68,14 @@ const TURNSTILE_SITEKEY = process.env['NEXT_PUBLIC_TURNSTILE_SITEKEY'];
 export function ConnectWalletButtons({ className }: { className?: string }) {
   const { ethAddress } = useAddress();
   const hasMetamaskConnected = !!ethAddress;
-  const [ethAddressFromKeplr, setEthAddressFromKepler] = useState('');
-
-  const targetHexAddress = ethAddress || ethAddressFromKeplr;
 
   const [keplrAccounts, setKeplrAccounts] = useState<Record<string, string>>(
     {},
   );
 
-  const { disconnect } = useWallet();
+  const targetHexAddress = ethAddress || keplrAccounts.haqq;
 
-  const notConnectedKeplr =
-    Object.keys(keplrAccounts).length === 0 || hasMetamaskConnected;
+  const { disconnect } = useWallet();
 
   const connectKeplrWallet = useCallback(async () => {
     const keplrWallet = await getKeplrWallet();
@@ -101,13 +97,11 @@ export function ConnectWalletButtons({ className }: { className?: string }) {
         await keplrWallet.getKey('haqq_11235-1'),
       ]);
 
-      setEthAddressFromKepler(haqqToEth(haqq.bech32Address));
-
       setKeplrAccounts({
         haqq: haqq.bech32Address,
       });
     }
-  }, [disconnect, setEthAddressFromKepler, hasMetamaskConnected]);
+  }, [disconnect, hasMetamaskConnected]);
 
   const { handleWalletConnect, selectWalletModalConnectors } =
     useEvmConnectors();
