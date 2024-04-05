@@ -1,21 +1,6 @@
 import { useCallback } from 'react';
 import axios from 'axios';
 import { getKeplrWallet, usePersonalSign } from '@haqq-nft/web3-connections';
-export interface IParticipateResult {
-  message: string;
-  status: string;
-  address: string;
-}
-
-export enum ParticipantStatus {
-  Awaiting = 'awaiting',
-  Checking = 'checking',
-  Failed = 'failed',
-  Queued = 'queued',
-  Redeemed = 'redeemed',
-  Unknown = 'unknown',
-  Approved = 'approved',
-}
 
 export interface IParticipateResponse {
   message?: string;
@@ -49,9 +34,9 @@ export function useAirdropActions() {
       haqqAddress: string,
       message: string,
       signature: string,
-    ): Promise<IParticipateResponse> => {
+    ): Promise<IParticipant> => {
       try {
-        const result = await axios.post<IParticipateResult>(
+        const result = await axios.post<IParticipant>(
           `${HOST}/api/eco/${haqqAddress}/evm`,
           {
             message,
@@ -77,9 +62,9 @@ export function useAirdropActions() {
       message: string,
       signature: string,
       haqqAddress?: string,
-    ): Promise<IParticipateResponse> => {
+    ): Promise<IParticipant> => {
       try {
-        const result = await axios.post<IParticipateResult>(
+        const result = await axios.post<IParticipant>(
           `${HOST}/api/eco/${haqqAddress}/kepplr`,
           {
             message,
