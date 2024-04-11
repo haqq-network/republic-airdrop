@@ -13,7 +13,7 @@ import { Instructions } from '../instructions/instructions';
 import { PurchaseFailureBlock } from '../purchase-failure-block/purchase-failure-block';
 
 async function enableChains(keplrWallet: Keplr) {
-  await keplrWallet.enable(['haqq_11235-1', 'cosmoshub-4', 'evmos_9001-2']);
+  await keplrWallet.enable(['haqq_11235-1']);
 }
 
 async function addHaqqNetwork(keplrWallet: Keplr) {

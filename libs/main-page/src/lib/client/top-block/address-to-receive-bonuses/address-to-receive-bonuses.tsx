@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
@@ -41,6 +41,7 @@ export function AddressToReceiveBonuses({
     },
   });
 
+  const isEth = address && address.startsWith('0x');
   const isDisabled = !address || address.length === 0;
 
   const {
@@ -53,6 +54,26 @@ export function AddressToReceiveBonuses({
 
   const [pending, setPending] = useState(false);
 
+  useEffect(() => {
+    const check = async () => {
+      try {
+        const result = await checkAirdropAvailability(
+          isEth ? address : ethToHaqq(address),
+        );
+
+        if (result.id) {
+          setNotAllowed(false);
+        } else {
+          setNotAllowed(true);
+        }
+      } catch (e) {
+        console.error(e);
+        setNotAllowed(true);
+      }
+    };
+    check();
+  }, [address, setNotAllowed, checkAirdropAvailability, isEth]);
+
   const onCheck = useCallback(
     async (data: IFields) => {
       if (!data.address || data.address.length === 0) {
@@ -61,44 +82,38 @@ export function AddressToReceiveBonuses({
 
       setPending(true);
       try {
-        const result = await checkAirdropAvailability(data.address);
+        try {
+          if (isEth) {
+            const signature = await signEvm(address as Hex, data.address);
 
-        if (result.id) {
-          try {
-            if (address.startsWith('0x')) {
-              const signature = await signEvm(address as Hex, data.address);
+            const result = await participateEvm(
+              ethToHaqq(address),
+              data.address,
+              signature,
+            );
 
-              const result = await participateEvm(
-                ethToHaqq(address),
-                data.address,
-                signature,
-              );
-
-              if (!result.id) {
-                setNotAllowed(true);
-              } else {
-                setSuccess(true);
-              }
-            } else if (address.startsWith('haqq')) {
-              const signature = await signKeplr('haqq_11235-1', data.address);
-
-              const result = await participateCosmos(
-                data.address,
-                signature.signature,
-                address,
-              );
-
-              if (!result.id) {
-                setNotAllowed(true);
-              } else {
-                setSuccess(true);
-              }
+            if (!result.id) {
+              setNotAllowed(true);
+            } else {
+              setSuccess(true);
             }
-          } catch (e) {
-            console.error(e);
-            setNotAllowed(true);
+          } else if (address.startsWith('haqq')) {
+            const signature = await signKeplr('haqq_11235-1', data.address);
+
+            const result = await participateCosmos(
+              data.address,
+              signature.signature,
+              address,
+            );
+
+            if (!result.id) {
+              setNotAllowed(true);
+            } else {
+              setSuccess(true);
+            }
           }
-        } else {
+        } catch (e) {
+          console.error(e);
           setNotAllowed(true);
         }
       } catch (e) {
@@ -112,11 +127,11 @@ export function AddressToReceiveBonuses({
       setSuccess,
       setNotAllowed,
       address,
-      checkAirdropAvailability,
       participateCosmos,
       participateEvm,
       signEvm,
       signKeplr,
+      isEth,
     ],
   );
 
