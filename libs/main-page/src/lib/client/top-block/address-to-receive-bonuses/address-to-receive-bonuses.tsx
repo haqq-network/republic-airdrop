@@ -6,7 +6,12 @@ import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
 import { Hex } from 'viem';
 import * as yup from 'yup';
-import { FormError, HaqqButton, HookedFormInput } from '@haqq-nft/ui-kit';
+import {
+  FormError,
+  HaqqButton,
+  HookedFormInput,
+  PageLoading,
+} from '@haqq-nft/ui-kit';
 import { ethToHaqq } from '@haqq-nft/utils';
 import { useAirdropActions } from '../../hooks/use-airdrop-actions/use-airdrop-actions';
 
@@ -54,8 +59,12 @@ export function AddressToReceiveBonuses({
 
   const [pending, setPending] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const check = async () => {
+      setLoading(true);
+
       try {
         const result = await checkAirdropAvailability(
           isEth ? address : ethToHaqq(address),
@@ -69,8 +78,11 @@ export function AddressToReceiveBonuses({
       } catch (e) {
         console.error(e);
         setNotAllowed(true);
+      } finally {
+        setLoading(false);
       }
     };
+
     check();
   }, [address, setNotAllowed, checkAirdropAvailability, isEth]);
 
@@ -134,6 +146,10 @@ export function AddressToReceiveBonuses({
       isEth,
     ],
   );
+
+  if (loading) {
+    return <PageLoading />;
+  }
 
   return (
     <form

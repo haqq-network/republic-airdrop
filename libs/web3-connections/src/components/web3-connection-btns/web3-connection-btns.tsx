@@ -15,17 +15,7 @@ export const Web3ConnectionBtns = ({
 }: {
   className?: string;
 }) => {
-  const { openSelectWallet } = useWallet();
-
-  const { connectAsync, connectors } = useWagmiConnect();
-
-  const handleEvmConnect = useCallback(async () => {
-    if (window.ethereum) {
-      openSelectWallet();
-    } else {
-      connectors[0] && (await connectAsync({ connector: connectors[0] }));
-    }
-  }, [openSelectWallet, connectors, connectAsync]);
+  const { connectors } = useWagmiConnect();
 
   const { ethAddress: targetAddress } = useCurrentAddress();
 
@@ -33,13 +23,7 @@ export const Web3ConnectionBtns = ({
     return null;
   }
 
-  return !targetAddress ? (
-    <div className={clsx('flex flex-row gap-[16px]', className)}>
-      <HaqqButton onClick={handleEvmConnect}>Connect wallet</HaqqButton>
-    </div>
-  ) : (
-    <Web2LoginBlock className={className} />
-  );
+  return !targetAddress ? null : <Web2LoginBlock className={className} />;
 };
 
 const Web2LoginBlock = ({ className }: { className: string }) => {
