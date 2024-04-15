@@ -54,6 +54,7 @@ export const Input = forwardRef(
     }: AdditionalInputProps<T>,
     ref: any,
   ) => {
+    console.log('error', error);
     const handleChange = useCallback(
       (event: ChangeEvent<HTMLInputElement>) => {
         if (onChange) {

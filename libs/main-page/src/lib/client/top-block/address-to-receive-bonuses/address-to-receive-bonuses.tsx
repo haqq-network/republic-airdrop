@@ -82,7 +82,8 @@ export function AddressToReceiveBonuses({
   const watchingAddress = watch('address');
 
   const isValidAddress =
-    watchingAddress && validAddressChecker(watchingAddress);
+    !watchingAddress ||
+    (watchingAddress && validAddressChecker(watchingAddress));
 
   const isEth = address && address.startsWith('0x');
   const isDisabled = !address || address.length === 0;
@@ -216,7 +217,9 @@ export function AddressToReceiveBonuses({
             (formState.errors.address ||
               (isValidAddress
                 ? undefined
-                : ADDRESS_VALIDATION_ERROR)) as FormError
+                : {
+                    message: ADDRESS_VALIDATION_ERROR,
+                  })) as FormError
           }
           register={register}
           className="w-full lg:w-[412px]"
