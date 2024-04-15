@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
-import { Hex } from 'viem';
+import { Hex, isAddress } from 'viem';
 import * as yup from 'yup';
 import {
   FormError,
@@ -12,15 +12,47 @@ import {
   HookedFormInput,
   PageLoading,
 } from '@haqq-nft/ui-kit';
-import { ethToHaqq } from '@haqq-nft/utils';
+import { ethToHaqq, haqqToEth } from '@haqq-nft/utils';
 import { useAirdropActions } from '../../hooks/use-airdrop-actions/use-airdrop-actions';
+
+function validAddressChecker(address?: string) {
+  if (address) {
+    try {
+      if (address.startsWith('0x')) {
+        return isAddress(address);
+      } else if (address.startsWith('haqq1')) {
+        const eth = haqqToEth(address);
+        return isAddress(eth);
+      } else {
+        return false;
+      }
+    } catch {
+      return false;
+    }
+  }
+
+  return false;
+}
+
+const ADDRESS_VALIDATION_ERROR = 'Address is not EVM/Haqq format';
 
 const schema = yup
   .object({
     address: yup
       .string()
       .defined('Address is required')
-      .required("Address can't be empty"),
+      .required("Address can't be empty")
+      .test('address', ADDRESS_VALIDATION_ERROR, function (value: any) {
+        if (!validAddressChecker(value)) {
+          return new yup.ValidationError(
+            ADDRESS_VALIDATION_ERROR,
+            null,
+            'choices',
+          );
+        }
+
+        return true;
+      }),
   })
   .required();
 
