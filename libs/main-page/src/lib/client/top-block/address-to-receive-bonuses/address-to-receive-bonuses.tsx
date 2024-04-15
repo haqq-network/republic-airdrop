@@ -71,12 +71,18 @@ export function AddressToReceiveBonuses({
   setSuccess: (value: boolean) => void;
   setNotAllowed: (value: boolean) => void;
 }) {
-  const { register, handleSubmit, formState, setValue } = useForm<IFields>({
-    resolver: yupResolver(schema),
-    values: {
-      address: '',
-    },
-  });
+  const { register, handleSubmit, formState, setValue, watch } =
+    useForm<IFields>({
+      resolver: yupResolver(schema),
+      values: {
+        address: '',
+      },
+    });
+
+  const watchingAddress = watch('address');
+
+  const isValidAddress =
+    watchingAddress && validAddressChecker(watchingAddress);
 
   const isEth = address && address.startsWith('0x');
   const isDisabled = !address || address.length === 0;
@@ -206,7 +212,12 @@ export function AddressToReceiveBonuses({
         <HookedFormInput
           name="address"
           id="address"
-          error={formState.errors.address as FormError}
+          error={
+            (formState.errors.address ||
+              (isValidAddress
+                ? undefined
+                : ADDRESS_VALIDATION_ERROR)) as FormError
+          }
           register={register}
           className="w-full lg:w-[412px]"
           placeholder="Enter address"
