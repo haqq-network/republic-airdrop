@@ -110,6 +110,7 @@ export function AddressToReceiveBonuses({
         );
 
         if (result.id) {
+          setValue('address', result.haqq_address);
           setNotAllowed(false);
         } else {
           setNotAllowed(true);
@@ -123,7 +124,7 @@ export function AddressToReceiveBonuses({
     };
 
     check();
-  }, [address, setNotAllowed, checkAirdropAvailability, isEth]);
+  }, [address, setNotAllowed, setValue, checkAirdropAvailability, isEth]);
 
   const onCheck = useCallback(
     async (data: IFields) => {
