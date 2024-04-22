@@ -20,7 +20,7 @@ export function TopBlock() {
     <div className="flex flex-1 flex-col overflow-x-clip">
       <div className="border-haqq-border flex border-b px-[40px] py-[48px] lg:px-[80px] lg:py-[68px]">
         <HeroHeading className="sm:text-[70px] lg:text-[70px]">
-          Air drop Republic
+          Republic bonuses
         </HeroHeading>
       </div>
 
