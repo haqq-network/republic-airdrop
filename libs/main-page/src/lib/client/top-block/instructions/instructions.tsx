@@ -9,19 +9,21 @@ export function Instructions({ className }: { className?: string }) {
       )}
     >
       <div>
-        This page is specially designed for users who participated in the public
-        sale of tokens on Republic in order to collect addresses to receive a
-        bonus for the long wait for token distribution.
+        Welcome to the page designed for users who participated in the ISLM
+        token public sale on Republic. This page allows you to provide and
+        confirm your address to receive a special bonus as our thanks for your
+        patience during the token distribution process.
       </div>
       <div className="flex flex-col gap-[12px]">
-        <div className="font-clash text-[20px]">Who Can Use</div>
         <div>
-          All users who bought ISLMs on Republic can participate. To
-          participate, you need to connect the wallet that you specified when
-          buying tokens. On the page you can specify the address to receive
-          tokens, it can coincide with your current address or be any address
-          you choose. The bonuses will be send in a few weeks so that all users
-          have time to provide a receiving address.
+          To participate, please connect the wallet you used during the token
+          sale. Here, you can confirm your current address or provide a new one
+          where you would like to receive your tokens. We are committed to
+          ensuring all participants have time to submit their information, with
+          bonuses scheduled for distribution in the coming weeks.If you
+          encounter a message indicating that your wallet address does not match
+          our records of ISLM purchasers on Republic, please ensure you are
+          connecting the correct wallet used during the sale.
         </div>
       </div>
     </div>
