@@ -106,7 +106,7 @@ export function AddressToReceiveBonuses({
 
       try {
         const result = await checkAirdropAvailability(
-          isEth ? address : ethToHaqq(address),
+          isEth ? ethToHaqq(address) : address,
         );
 
         if (result.id) {
