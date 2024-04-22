@@ -14,20 +14,20 @@ import {
 const DOMAIN = 'https://republic-airdrop.vercel.app/';
 
 export const metadata: Metadata = {
-  title: 'Ecosystem Airdrop',
+  title: 'Republic Bonuses',
   description: 'Approve your new airdrop address',
   openGraph: {
-    title: 'Ecosystem Airdrop',
+    title: 'Republic Bonuses',
     description: 'Approve your new airdrop address',
     type: 'website',
     url: DOMAIN,
     images: `${DOMAIN}/shared-bg.jpg`,
-    siteName: 'Ecosystem Airdrop',
+    siteName: 'Republic Bonuses',
   },
   twitter: {
     site: DOMAIN,
     images: `${DOMAIN}/shared-bg.jpg`,
-    title: 'Ecosystem Airdrop',
+    title: 'Republic Bonuses',
     description: 'Approve your new airdrop address',
   },
 };

@@ -9,17 +9,19 @@ export function Instructions({ className }: { className?: string }) {
       )}
     >
       <div>
-        This page is specially designed for users who participated in the 3rd
-        wave on Axle but whose responses to the "Center HAQQ wallet" prompt
-        weren't saved in Galxe. To change the address, you must log in under the
-        same wallet address as you passed the 3rd wave on Galxe
+        This page is specially designed for users who participated in the public
+        sale of tokens on Republic in order to collect addresses to receive a
+        bonus for the long wait for token distribution.
       </div>
       <div className="flex flex-col gap-[12px]">
-        <div className="font-clash text-[20px]">Who Can Update</div>
+        <div className="font-clash text-[20px]">Who Can Use</div>
         <div>
-          Users whose answers to the question of the main wallet address were
-          lost on 3rd wave and users who didn't specify their wallet during the
-          3rd wave are eligible to update their address her
+          All users who bought ISLMs on Republic can participate. To
+          participate, you need to connect the wallet that you specified when
+          buying tokens. On the page you can specify the address to receive
+          tokens, it can coincide with your current address or be any address
+          you choose. The bonuses will be send in a few weeks so that all users
+          have time to provide a receiving address.
         </div>
       </div>
     </div>
