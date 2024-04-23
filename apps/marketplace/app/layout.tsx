@@ -21,12 +21,10 @@ export const metadata: Metadata = {
     description: 'Approve your new airdrop address',
     type: 'website',
     url: DOMAIN,
-    images: `${DOMAIN}/shared-bg.jpg`,
     siteName: 'Republic Bonuses',
   },
   twitter: {
     site: DOMAIN,
-    images: `${DOMAIN}/shared-bg.jpg`,
     title: 'Republic Bonuses',
     description: 'Approve your new airdrop address',
   },
