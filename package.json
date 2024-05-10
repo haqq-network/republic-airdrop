@@ -46,7 +46,7 @@
     "kubo-rpc-client": "3.0.3",
     "lodash": "4.17.21",
     "moment": "2.30.1",
-    "next": "14.1.0",
+    "next": "14.1.1",
     "node-fetch": "3.3.2",
     "react": "18.2.0",
     "react-countdown": "2.3.5",
