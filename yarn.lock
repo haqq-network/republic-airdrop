@@ -2775,7 +2775,7 @@ __metadata:
     "@storybook/addon-essentials": "npm:7.6.12"
     "@storybook/addon-interactions": "npm:7.6.12"
     "@storybook/addon-storysource": "npm:7.6.12"
-    "@storybook/addon-viewport": "npm:7.6.12"
+    "@storybook/addon-viewport": "npm:8.1.3"
     "@storybook/core-common": "npm:7.6.12"
     "@storybook/core-server": "npm:7.6.12"
     "@storybook/jest": "npm:0.2.3"
@@ -6118,6 +6118,15 @@ __metadata:
   dependencies:
     memoizerific: "npm:^1.11.3"
   checksum: 10/1ebeb77babd0dc9ae2a108aa9da5e3b5ddd35c6a32cc094018da14ded6808db61c3bdc9ed07a9a2a839f88413f6bf56f0d2fce231013d08d53f4ff6dfa10b1dd
+  languageName: node
+  linkType: hard
+
+"@storybook/addon-viewport@npm:8.1.3":
+  version: 8.1.3
+  resolution: "@storybook/addon-viewport@npm:8.1.3"
+  dependencies:
+    memoizerific: "npm:^1.11.3"
+  checksum: 10/92a3b9a0c828cd0de39b6762df4884fbba246768d67ff2da84d0a4458789f2da8f230be073ee0f52e1e77fda0c59d53b57a5b726f3b2bc9feb97b2e6d7e7b4b3
   languageName: node
   linkType: hard
 
