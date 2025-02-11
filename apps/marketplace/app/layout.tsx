@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import Intercom from '@intercom/messenger-js-sdk';
 import { Metadata } from 'next';
 import './global.scss';
 import { AuthProvider, ConfigProvider } from '@haqq-nft/data-api';
@@ -11,10 +10,7 @@ import {
   Web3ConnectionBtns,
   Web3Provider,
 } from '@haqq-nft/web3-connections';
-
-Intercom({
-  app_id: 'klb9yu7o',
-});
+import { IntercomProvider } from './components/IntercomProvider';
 
 const DOMAIN = 'https://republic-airdrop.vercel.app/';
 
@@ -55,6 +51,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                   >
                     {children}
                   </Page>
+                  <IntercomProvider />
                 </SelectWalletModalWrapper>
               </WalletProvider>
             </AuthProvider>
