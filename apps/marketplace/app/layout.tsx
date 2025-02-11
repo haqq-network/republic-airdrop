@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import Intercom from '@intercom/messenger-js-sdk';
 import { Metadata } from 'next';
 import './global.scss';
 import { AuthProvider, ConfigProvider } from '@haqq-nft/data-api';
@@ -10,6 +11,10 @@ import {
   Web3ConnectionBtns,
   Web3Provider,
 } from '@haqq-nft/web3-connections';
+
+Intercom({
+  app_id: 'klb9yu7o',
+});
 
 const DOMAIN = 'https://republic-airdrop.vercel.app/';
 

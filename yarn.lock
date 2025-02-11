@@ -2758,6 +2758,7 @@ __metadata:
     "@commitlint/config-conventional": "npm:18.4.3"
     "@headlessui/react": "npm:1.7.18"
     "@hookform/resolvers": "npm:3.0.0"
+    "@intercom/messenger-js-sdk": "npm:0.0.14"
     "@keplr-wallet/types": "npm:0.12.76"
     "@nx/cypress": "npm:18.0.2"
     "@nx/eslint": "npm:18.0.2"
@@ -3093,6 +3094,13 @@ __metadata:
   version: 0.33.2
   resolution: "@img/sharp-win32-x64@npm:0.33.2"
   conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@intercom/messenger-js-sdk@npm:0.0.14":
+  version: 0.0.14
+  resolution: "@intercom/messenger-js-sdk@npm:0.0.14"
+  checksum: 10/49a95cdb701553df45e8c526596ab7ae9b44f462ef3317e9397b44e9358c5e9cbd556f49722984a714f7052645998876aa8721d43c5f77479e3b9ba94699c7ed
   languageName: node
   linkType: hard
 
